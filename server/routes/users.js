@@ -12,9 +12,7 @@ routerSignup.get('/', (req, res) => {
 });
 
 routerSignup.post('/signup', userController.hashing, userController.createUser, (req, res) => {
-    // console.log(req.body)
-    const newUser = res.locals.newUser;
-    return res.status(200).json(newUser);
+  return res.status(200).json(res.locals.createdUser);
 })
 
 
