@@ -7,10 +7,10 @@ export default function Signup() {
     const newFirstname = document.getElementById('firstname');
     const newLastname = document.getElementById('lastname');
 
-    console.log(newUsername.value);
-    console.log(newPassword.value);
-    console.log(newFirstname.value);
-    console.log(newLastname.value);
+    // console.log(newUsername.value);
+    // console.log(newPassword.value);
+    // console.log(newFirstname.value);
+    // console.log(newLastname.value);
 
     fetch('http://localhost:3000/users/signup', {
       headers: {
