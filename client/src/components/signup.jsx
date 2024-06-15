@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function Signup() {
-  
   function createAccount() {
     const newUsername = document.getElementById('username');
     const newPassword = document.getElementById('password');
@@ -13,7 +12,7 @@ export default function Signup() {
     console.log(newFirstname.value);
     console.log(newLastname.value);
 
-    fetch('/api/users/signup', {
+    fetch('http://localhost:3000/users/signup', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -23,11 +22,12 @@ export default function Signup() {
         username: newUsername.value,
         password: newPassword.value,
         firstName: newFirstname.value,
-        lastName: newLastname.value
+        lastName: newLastname.value,
       }),
     })
-      .then(function (res) {
-        console.log(res)
+      .then((res) => res.json())
+      .then((data)=> {
+        console.log('this is fetch response', data);
       })
       .catch(function (res) {
         alert('bad');
@@ -35,35 +35,19 @@ export default function Signup() {
   }
 
   return (
-      <div className= "signup-box">
-        <input
-          type='text'
-          id='username'
-          name='username'
-          placeholder='Username'
-        />
-        <input
-          type='text'
-          id='password'
-          name='password'
-          placeholder='Password'
-        />
-        <input
-          type='text'
-          id='firstname'
-          name='firstname'
-          placeholder='Firstname'
-        />
-        <input
-          type='text'
-          id='lastname'
-          name='lastname'
-          placeholder='Lastname'
-        />
-        <button type='button' onClick={createAccount}>
-          Sign Up
-        </button>
-      </div>
-
+    <div className='signup-box'>
+      <input type='text' id='username' name='username' placeholder='Username' />
+      <input type='text' id='password' name='password' placeholder='Password' />
+      <input
+        type='text'
+        id='firstname'
+        name='firstname'
+        placeholder='Firstname'
+      />
+      <input type='text' id='lastname' name='lastname' placeholder='Lastname' />
+      <button type='button' onClick={createAccount}>
+        Sign Up
+      </button>
+    </div>
   );
 }
