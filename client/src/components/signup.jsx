@@ -9,7 +9,7 @@ export default function Signup() {
     console.log(newUsername.value);
     console.log(newPassword.value);
 
-    fetch('/api/signup', {
+    fetch('/api/users/signup', {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
