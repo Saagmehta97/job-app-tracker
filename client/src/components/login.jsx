@@ -9,11 +9,16 @@ import "./login.css";
     let navigate = useNavigate();
     const handleClick = () =>{
         navigate('/users/signup')
-        console.log('hello')
     }
     return (
       <div>
-      <div>login</div>
+      <div>login
+        <form /*onSubmit={handleSubmit}*/ id="loginform">
+            username: <input type="text" id="usernameInput" /*onChange={storeUsername}*/></input><br></br>
+            password: <input type="text" ide="passwordInput" /*onChange={storePassword}*/></input>
+            <button type="submit" id="loginButton">login!</button>
+        </form>
+      </div>
       <button onClick={handleClick} id="signup">sign up</button>
       </div>
     )
