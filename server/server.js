@@ -1,11 +1,12 @@
 const express = require('express');
-const { restart } = require('nodemon');
+// const { restart } = require('nodemon');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const routerSignup = require('./routes/users');
+const applicationsRouter = require('./routes/applications');
 
 const app = express();
-const path = require('path');
+// const path = require('path');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -23,8 +24,7 @@ app.get('/*', function(req, res){
 })
 
 app.use('/users', routerSignup);
-
-// app.post('/signup');
+// app.use('/applications', applicationsRouter);
 
 // Global error handler: 
 app.use((err, req, res, next) => {
