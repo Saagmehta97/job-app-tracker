@@ -17,6 +17,8 @@ app.use(cors());
 
 app.use('/users', routerSignup);
 
+// app.post('/signup');
+
 // Global error handler: 
 app.use((err, req, res, next) => {
   const defaultErr = {
