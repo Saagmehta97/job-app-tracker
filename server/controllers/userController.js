@@ -5,7 +5,6 @@ const db = require('../models/userModels');
 const userController = {};
 
 userController.hashing = async (req, res, next) => {
-  console.log('inside hash function');
   const { password } = req.body;
   try {
     const salt = await bcrypt.genSalt(saltRounds);
@@ -20,28 +19,26 @@ userController.hashing = async (req, res, next) => {
   }
 };
 
-userController.createUser = async (req, res, next) => {
-  const { firstName, lastName, username } = req.body;
-  try {
-    const hashWord = res.locals.hashWord;
-    // console.log('firstName is: ', firstName);
-    // console.log('ln is: ', lastName);
-    // console.log('user is: ', username);
-    // console.log('pass is: ', hashWord);
-    const newUser = {
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      password: hashWord,
-    };
-    res.locals.newUser = newUser;
-    return next();
-  } catch (error) {
-    return next({
-      log: err,
-      message: { err: 'small error in userController.createUser' },
-    });
-  }
+userController.createUser = (req, res, next) => {
+const { firstName, lastName, username } = req.body;
+  const hashWord = res.locals.hashWord;
+
+  const params = [firstName, lastName, username, hashWord];
+
+  const query = `INSERT INTO applications VALUES ($1, $2, $3, $4) RETURNING *`;
+
+  db.query(query, params)
+    .then((createdUser) => {
+      console.log('Hi from createUser method');
+
+      console.log('Created user: ', createdUser);
+      console.log(res.locals);
+      res.locals.createdUser = createdUser.rows[0];
+      return next();
+    })
+    .catch((err) => {
+      return next({error: err, message: 'Error in userController.createUser'});
+    })
 };
 
 module.exports = userController;
