@@ -39,6 +39,28 @@ const { firstName, lastName, username } = req.body;
     .catch((err) => {
       return next({error: err, message: 'Error in userController.createUser'});
     })
+    
+};
+
+userController.verifyUser = async (req, res, next) => {
+  const { username, password } = req.body;
+
+  const passQuery = `SELECT password FROM users WHERE username = ${username}`;
+  //query for the stored password in the database using the username as the condition
+  //use bcrypt compare to check entered password and stored password
+  try {
+    const storedPass = await db.query(passQuery);
+    const queryResult = await bcrypt.compare(password, storedPass);
+    if (queryResult) {
+      res.locals.password = true;
+    }
+    return next();
+  } catch (err) {
+    return next({
+      log: err,
+      message: { err: 'small error in userController.verifyUser' },
+    });
+  }
 };
 
 module.exports = userController;
