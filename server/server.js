@@ -14,6 +14,13 @@ app.use(cors());
 // statically serve everything in the build folder on the route '/build'
 // app.use('/build', express.static(path.join(__dirname, '../build')));
 // serve index.html on the route '/'
+app.get('/*', function(req, res){
+    res.sendFile(path.join(__dirname, '../public/index.html'), function(err){
+        if(err){
+            res.status(500).send(err)
+        }
+    })
+})
 
 app.use('/users', routerSignup);
 
