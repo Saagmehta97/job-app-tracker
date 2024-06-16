@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import './login.css';
+import './styles.css';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -32,6 +32,9 @@ const Login = () => {
       });
       console.log('response ', response);
       const data = await response.json();
+      if (data) {
+        navigate('/users/dashboard');
+      }
       console.log(data);
     } catch (err) {
       alert('bad');
