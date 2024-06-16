@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
+const Signup = () => {
+  let navigate = useNavigate();
+
   function createAccount() {
     const newUsername = document.getElementById('username');
     const newPassword = document.getElementById('password');
@@ -26,8 +29,9 @@ export default function Signup() {
       }),
     })
       .then((res) => res.json())
-      .then((data)=> {
+      .then((data) => {
         console.log('this is fetch response', data);
+        navigate('/');
       })
       .catch(function (res) {
         alert('bad');
@@ -50,4 +54,6 @@ export default function Signup() {
       </button>
     </div>
   );
-}
+};
+
+export default Signup;
