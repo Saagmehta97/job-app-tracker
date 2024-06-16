@@ -26,7 +26,7 @@ const { firstName, lastName, username } = req.body;
   const params = [firstName, lastName, username, hashWord];
 
   const query = `INSERT INTO applications VALUES ($1, $2, $3, $4) RETURNING *`;
-
+  db.testConnection();
   db.query(query, params)
     .then((createdUser) => {
       console.log('Hi from createUser method');
