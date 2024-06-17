@@ -5,7 +5,7 @@ import Sidebar from './sidebar';
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
-  const [appStatus, setAppStatus] = useState('');
+  const [appStatus, setAppStatus] = useState(''); 
 
   const handleOnChange = (e) => {
     e.preventDefault();
@@ -24,7 +24,8 @@ const dashboard = () => {
 
   return (
     <div className='main'>
-      <div className='dashboard-top-container'>
+      {/* <h1 className='header'>JobHub</h1> */}
+      <div className='dashboard-top-container'> 
         <div className='form_box'>
           <form className='inputs'>
             {' '}
@@ -61,10 +62,12 @@ const dashboard = () => {
               Submit
             </button>
           </form>
+          <ApplicationList />
         </div>
         <Sidebar />
+        
       </div>
-      <ApplicationList />
+      
     </div>
   );
 };

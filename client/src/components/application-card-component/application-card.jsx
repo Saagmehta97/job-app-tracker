@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 
-const ApplicationCard = () => {
+const ApplicationCard = ({companyName, dateApplied, status, role, notes}) => {
 
   return (
-    <div>
-      <h3>McDonalds</h3>
-      <p>01/12/2024</p>
-      <p>Applied</p>
-      <p>Role : Fry cook</p>
-      <p>Notes : Supervisor told me I'm the best candidate so far!!!</p>
+    <div className = "application-card">
+      <h3>{companyName}</h3>
+      <p>{dateApplied}</p>
+      <p>{status}</p>
+      <p>{role}</p>
+      <p>{notes}</p>
     </div>
   )
 }
+export default ApplicationCard;

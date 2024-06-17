@@ -6,12 +6,11 @@ import { useEffect } from 'react';
 const Login = () => {
   let navigate = useNavigate();
   const handleClick = () => {
-    navigate('/users/signup');
+    navigate('users/signup');
   };
 
   async function loginAccount(event) {
     event.preventDefault();
-    
 
     const newUsername = document.getElementById('usernameInput');
     const newPassword = document.getElementById('passwordInput');
@@ -50,9 +49,9 @@ const Login = () => {
   }
 
   return (
-    <div>
+    <div className='login-container'>
       <div>
-        login
+        Login
         <form /*onSubmit={handleSubmit}*/ id='loginform'>
           username:{' '}
           <input
@@ -70,7 +69,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <button onSubmit={handleClick} id='signup'>
+      <button onClick={handleClick} id='signup'>
         sign up
       </button>
     </div>

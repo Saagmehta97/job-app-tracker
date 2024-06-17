@@ -1,4 +1,4 @@
-import * as types from './actions/actionTypes';
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   companyName : '',
@@ -24,16 +24,13 @@ const applicationsReducer = (state = initialState, action) => {
       // push the new market onto a copy of the market list
 
       // return updated state
-      return {
-        ...state,
-        marketList,
-        lastMarketId,
-        totalMarkets,
-        newLocation: '',
-      };
-    case types.SET_NEW_LOCATION:
-      return Object.assign({}, state, { newLocation: action.payload });
-
+      return Object.assign({}, state, {
+        companyName: action.payload.companyName,
+        dateApplied: action.payload.dateApplied,
+        status: action.payload.status,
+        role: action.payload.role,
+        notes: action.payload.notes,
+      });
     case types.ADD_CARD:
       break;
     case types.DELETE_CARD:
@@ -44,4 +41,4 @@ const applicationsReducer = (state = initialState, action) => {
   }
 };
 
-export default marketsReducer;
+export default applicationsReducer;
