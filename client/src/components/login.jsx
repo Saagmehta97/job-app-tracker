@@ -69,7 +69,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <button onClick={handleClick} id='signup'>
+      <button onSubmit={handleClick} id='signup'>
         sign up
       </button>
     </div>
