@@ -6,10 +6,13 @@ import Dashboard from './components/dashboard.jsx';
 
 export default function App() {
   return (
-    <Routes>
-      <Route path='/' element={<Login />} />
-      <Route path='/users/signup' element={<Signup />} />
-      <Route path='/users/dashboard' element={<Dashboard />} />
-    </Routes>
+    <div>
+      <h1 className='header'>JobHub</h1>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/users/signup' element={<Signup />} />
+        <Route path='/users/dashboard' element={<Dashboard />} />
+      </Routes>
+    </div>
   );
 }
