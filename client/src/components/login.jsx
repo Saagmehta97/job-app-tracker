@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import './styles.css';
+// import './styles.css';
 
 const Login = () => {
   let navigate = useNavigate();
