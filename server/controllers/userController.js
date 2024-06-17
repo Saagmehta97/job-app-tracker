@@ -76,7 +76,7 @@ userController.verifyUser = async (req, res, next) => {
   }
 };
 
-userController.setCookies = (req, res) => {
+userController.setCookies = (req, res, next) => {
   const { username } = req.body;
   res.cookie(currentUser, username)
   res.send("cookie set")
