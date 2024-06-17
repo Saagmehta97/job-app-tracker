@@ -4,13 +4,19 @@ import ApplicationList from './application-list-component/application-list.jsx'
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
-
+  const [appStatus, setAppStatus]  = useState('');
+  
   const handleOnChange = (e) => {
     e.preventDefault();
     setDateApplied(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleAppStatus = () => {
+    e.preventDefault();
+    setAppStatus(e.target.value);
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Hello');
   };
@@ -37,7 +43,7 @@ const dashboard = () => {
               onChange={handleOnChange}
             />
             <form className='status'>
-              <select name='Status' id='status'>
+              <select name='Status' id='status' onChange={handleAppStatus}>
                 <option value='' disabled selected hidden>
                   Select App Status...
                 </option>
