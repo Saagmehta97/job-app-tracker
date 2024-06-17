@@ -1,20 +1,27 @@
 import React from 'react';
 import { useState } from 'react';
+import ApplicationList from './application-list-component/application-list.jsx'
 import Sidebar from './sidebar';
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
-
+  const [appStatus, setAppStatus]  = useState('');
+  
   const handleOnChange = (e) => {
     e.preventDefault();
     setDateApplied(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleAppStatus = () => {
+    e.preventDefault();
+    setAppStatus(e.target.value);
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Hello');
   };
-
+  
   return (
     <div>
       <div className='main'>
@@ -37,7 +44,7 @@ const dashboard = () => {
               onChange={handleOnChange}
             />
             <form className='status'>
-              <select name='Status' id='status'>
+              <select name='Status' id='status' onChange={handleAppStatus}>
                 <option value='' disabled selected hidden>
                   Select App Status...
                 </option>
@@ -55,44 +62,7 @@ const dashboard = () => {
             </button>
           </form>
         </div>
-        <div className='app_list'>
-          application list
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-        </div>
+      <ApplicationList />
       </div>
     </div>
   );
