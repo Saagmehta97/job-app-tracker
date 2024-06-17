@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import ApplicationList from './application-list-component/application-list.jsx'
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
@@ -19,7 +20,7 @@ const dashboard = () => {
     e.preventDefault();
     console.log('Hello');
   };
-
+  
   return (
     <div>
       <div className='main'>
@@ -60,44 +61,7 @@ const dashboard = () => {
             </button>
           </form>
         </div>
-        <div className='app_list'>
-          application list
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-          <div class='row'>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-            <div class='cell'></div>
-          </div>
-        </div>
+      <ApplicationList />
       </div>
     </div>
   );
