@@ -21,8 +21,9 @@ routerSignup.post(
   }
 );
 
-routerSignup.post('/login', userController.verifyUser, (req, res) => {
+routerSignup.post('/login', userController.setCookies, userController.verifyUser,  (req, res) => {
   console.log(res.locals.loginPassword + ' end middleware');
+  sessionStorage.username = res.locals.userName
   return res.status(200).json(res.locals.loginPassword);
 });
 // ADD GET MORE CHARACTERS ROUTE HANDLER HERE
