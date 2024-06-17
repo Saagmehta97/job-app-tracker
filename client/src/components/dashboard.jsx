@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import Sidebar from './sidebar';
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
