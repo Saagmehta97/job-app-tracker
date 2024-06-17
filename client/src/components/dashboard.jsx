@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
-import ApplicationList from './application-list-component/application-list.jsx'
+import ApplicationList from './application-list-component/application-list.jsx';
 import Sidebar from './sidebar';
 
 const dashboard = () => {
   const [dateApplied, setDateApplied] = useState('');
-  const [appStatus, setAppStatus]  = useState('');
-  
+  const [appStatus, setAppStatus] = useState('');
+
   const handleOnChange = (e) => {
     e.preventDefault();
     setDateApplied(e.target.value);
@@ -15,16 +15,16 @@ const dashboard = () => {
   const handleAppStatus = () => {
     e.preventDefault();
     setAppStatus(e.target.value);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Hello');
   };
-  
+
   return (
-    <div>
-      <div className='main'>
+    <div className='main'>
+      <div className='dashboard-top-container'>
         <div className='form_box'>
           <form className='inputs'>
             {' '}
@@ -62,8 +62,9 @@ const dashboard = () => {
             </button>
           </form>
         </div>
-      <ApplicationList />
+        <Sidebar />
       </div>
+      <ApplicationList />
     </div>
   );
 };
