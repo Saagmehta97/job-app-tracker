@@ -65,6 +65,7 @@ userController.verifyUser = async (req, res, next) => {
     //console.log(storedPass + 'this is storedpass');
     if (queryResult) {
       res.locals.loginPassword = dbPass;
+      res.locals.userName = username
     }
     return next();
   } catch (err) {
@@ -74,5 +75,12 @@ userController.verifyUser = async (req, res, next) => {
     });
   }
 };
+
+userController.setCookies = (req, res) => {
+  const { username } = req.body;
+  res.cookie(currentUser, username)
+  res.send("cookie set")
+  return next();
+}
 
 module.exports = userController;

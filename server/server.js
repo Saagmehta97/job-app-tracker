@@ -24,7 +24,7 @@ app.get('/*', function(req, res){
 })
 
 app.use('/users', routerSignup);
-// app.use('/applications', applicationsRouter);
+app.use('/applications', applicationsRouter);
 
 // Global error handler: 
 app.use((err, req, res, next) => {

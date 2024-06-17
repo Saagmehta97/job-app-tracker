@@ -1,19 +1,14 @@
-// const express = require('express');
-// const userController = require('../controllers/userController');
+const express = require('express');
+const applicationController = require('../controllers/applicationsController');
+const applicationsRouter = express.Router();
 
-// const fileController = require('../controllers/fileController');
+applicationsRouter.post('/', applicationController.createApp, (req, res) => {
+    return res.status(200).json(res.locals.createApp);
+});
 
-// const applicationsRouter = express.Router();
-
-// ADD STARTER DATA REQUEST ROUTE HANDLER HERE
-
-// applicationsRouter.post('/', (req, res) => {
-    
-// });
-
-// applicationsRouter.get('/', (req, res) => {
-    
-// });
+applicationsRouter.get('/:id', applicationController.getApp, (req, res) => {
+    return res.status(200).json(res.locals.getApp);
+});
 
 // applicationsRouter.patch('/', (req, res) => {
     
@@ -23,4 +18,4 @@
 
 // })
 
-// module.exports = applicationsRouter;
+module.exports = applicationsRouter;

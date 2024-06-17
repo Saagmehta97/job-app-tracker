@@ -11,9 +11,10 @@ const Login = () => {
 
   async function loginAccount(event) {
     event.preventDefault();
+    
+
     const newUsername = document.getElementById('usernameInput');
     const newPassword = document.getElementById('passwordInput');
-
     // console.log(newUsername.value);
     // console.log(newPassword.value);
 
