@@ -13,20 +13,11 @@ const initialState = {
 const applicationsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ADD_APP:
-      // const newCard = {
-      //   companyName: action.payload.companyName,
-      //   dateApplied: action.payload.dateApplied,
-      //   status: action.payload.status,
-      //   role: action.payload.role,
-      //   notes: action.payload.notes,
-      // };
 
-      // console.log('NEW CARD', newCard);
-
-      // push the new market onto a copy of the market list
       return {
         ...state,
         appList: (state.appList || []).concat({
+          appId: action.payload.appId,
           companyName: action.payload.companyName,
           dateApplied: action.payload.dateApplied,
           status: action.payload.status,
@@ -46,34 +37,58 @@ const applicationsReducer = (state = initialState, action) => {
     // case types.ADD_CARD:
     //   break;
     case types.SET_STATUS:
-      const { companyName, status } = action.payload;
+      const { status } = action.payload;
       return {
         ...state,
         appList: state.appList.map((app) => {
-          if (app.companyName === companyName) {
+          if (app.appId === action.payload.appId) {
             // console.log('companyName', app.companyName)
             // console.log('action ', action.payload.companyName)
-            console.log('app', app);
+
             return {
               ...app,
               status: status,
-            }
+            };
           }
-          console.log("app", app)
-          console.log("status" , status)
+          console.log('app', app);
+          console.log('status', status);
           return app;
         }),
       };
-      case type.SET_NOTES:
-        return{
-          
-        }
+      
+    case types.SET_NOTES:
+      const { notes } = action.payload;
+      return {
+        ...state,
+        appList: state.appList.map((app) => {
+          if (app.appId === action.payload.appId) {
+            // console.log('companyName', app.companyName)
+            // console.log('action ', action.payload.companyName)
 
-    // case types.DELETE_CARD:
-    //   break;
+            return {
+              ...app,
+              notes: notes,
+            };
+          }
+          // console.log('app', app);
+          // console.log('notes', notes);
+          return app;
+        }),
+      };
 
-    default: {
-      return state;
+      case types.DELETE_APP:
+        // const { appId } = action.payload;
+        const newAppList = state.appList.filter((app) => app.appId !== action.payload.appId);
+        // console.log("action payload id", action.payload.appId);
+        // console.log("newAppList: ", newAppList);
+        return {
+          ...state,
+          appList: newAppList,
+          totalApps: state.totalApps - 1,
+        };
+
+      default: {
+        return state;
     }
   }
 };

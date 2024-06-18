@@ -5,6 +5,7 @@
   "author": "Red-lipped batfish",
   "license": "ISC",
   "scripts": {
+    "test": "jest --verbose",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client"

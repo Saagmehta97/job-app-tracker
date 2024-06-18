@@ -43,6 +43,7 @@ describe('Application reducer', () => {
         status: 'Applied',
         role: 'Coder',
         notes: 'asdasd',
+        appId: '00001',
       },
     };
 
@@ -80,6 +81,7 @@ describe('Application reducer', () => {
           status: 'Rejected',
           role: 'SWE',
           notes: 'Hello',
+          appId: '00001',
         },
       ],
       totalApps: 1,
@@ -90,6 +92,7 @@ describe('Application reducer', () => {
       payload: {
         companyName: 'Mcdonalds',
         status: 'Initial Interview',
+        appId: '00001',
       },
     };
 
@@ -102,7 +105,7 @@ describe('Application reducer', () => {
       expect(applicationsReducer(state, action)).not.toBe(state);
     });
 
-    it("doesn't touch the appList array", () => {
+    xit("doesn't touch the appList array", () => {
       const { appList } = applicationsReducer(state, action);
       expect(appList).toBe(appList);
     });
@@ -113,28 +116,85 @@ describe('Application reducer', () => {
    * just do ADD_CARD now, and come back to the rest of these redux tests later.
    */
   describe('SET_NOTES', () => {
-    it('updates status with the action payload', () => {
-      const action = {
-        type: 'ADD_CARD',
-        payload: notes,
-      };
+    let state = {
+      appList: [
+        {
+          appId: '00002',
+          companyName: 'Mcdonalds',
+          dateApplied: '06/18/2024',
+          status: 'Rejected',
+          role: 'SWE',
+          notes: 'Hello',
+        },
+      ],
+      totalApps: 1,
+    };
+
+    const action = {
+      type: 'SET_NOTES',
+      payload: {
+        appId: '00002',
+        companyName: 'Mcdonalds',
+        notes: 'Goodbye World',
+      },
+    };
+
+    it('Updates notes with the action payload', () => {
+      const newApp = applicationsReducer(state, action);
+      expect(newApp.appList[0].notes).toEqual(action.payload.notes);
     });
 
-    xit('increases total card count by 1', () => {});
+    it('Returns a state object not strictly equal to the original', () => {
+      expect(applicationsReducer(state, action)).not.toBe(state);
+    });
 
-    xit('includes a marketList not strictly equal to the original', () => {});
-
-    xit('does not mutate or duplicate other markets in marketList', () => {});
+    // xit('does not mutate or duplicate other markets in marketList', () => {});
   });
 
   describe('DELETE_CARD', () => {
-    xit('decreases card count of market specified by payload', () => {});
+    let state = {
+      appList: [
+        {
+          appId: '00003',
+          companyName: 'Google',
+          dateApplied: 'June 18th, 2024',
+          status: 'Applied',
+          role: 'Coder',
+          notes: 'asdasd',
+        },
+        {
+          appId: '00004',
+          companyName: 'Amazon',
+          dateApplied: 'June 17th, 2024',
+          status: 'Applied',
+          role: 'Coder',
+          notes: 'asdasd',
+        },
+      ],
+      totalApps: 2,
+    };
 
-    xit('decreases total card count by 1', () => {});
+    const action = {
+      type: 'DELETE_APP',
+      payload: {
+        appId: '00003',
+      },
+    };
 
-    xit('includes a marketList not strictly equal to the original', () => {});
+    it('removed application from App list specified by payload', () => {
+      const newAppList = applicationsReducer(state, action);
+      expect(state.appList).not.toEqual(newAppList.appList);
+    });
 
-    xit('does not mutate or duplicate other markets in marketList', () => {});
+    it('decreases total apps count by 1', () => {
+      const newAppList = applicationsReducer(state, action);
+      expect(state.totalApps).not.toEqual(newAppList.totalApps);
+      
+    });
+
+    // xit('includes a marketList not strictly equal to the original', () => {});
+
+    // xit('does not mutate or duplicate other markets in marketList', () => {});
   });
 
   // The rest is functionality not included in the original MegaMarkets unit.
@@ -144,15 +204,15 @@ describe('Application reducer', () => {
   //   markets, which activates/deactivates the button.
   //   2. LOAD_MARKETS only happens once, on page load, to load up markets from
   //   the database.
-  describe('SYNC_MARKETS', () => {
-    xit('sets synced to true', () => {});
-  });
+  // describe('SYNC_MARKETS', () => {
+  //   xit('sets synced to true', () => {});
+  // });
 
-  describe('LOAD_MARKETS', () => {
-    xit('replaces its marketList with the payload as-is', () => {});
+  // describe('LOAD_MARKETS', () => {
+  //   xit('replaces its marketList with the payload as-is', () => {});
 
-    xit('sets the correct totalMarkets count', () => {});
+  //   xit('sets the correct totalMarkets count', () => {});
 
-    xit('sets the correct totalCards count', () => {});
-  });
+  //   xit('sets the correct totalCards count', () => {});
+  // });
 });

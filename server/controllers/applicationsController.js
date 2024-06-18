@@ -29,8 +29,8 @@ applicationController.getApp = async (req, res, next) => {
   const { id } = req.params;
   const query = `SELECT a.id, a.company, a.date_applied, a.status, a.role, users.username
     FROM applications a INNER JOIN users 
-    ON applications.user_id = users.id
-    WHERE applications.id = $1`;
+    ON a.user_id = users.id
+    WHERE a.id = $1`;
   const params = [id];
 
   await db.query(query, params)

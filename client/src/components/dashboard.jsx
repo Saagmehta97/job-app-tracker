@@ -12,14 +12,18 @@ const dashboard = () => {
     setDateApplied(e.target.value);
   };
 
-  const handleAppStatus = () => {
-    e.preventDefault();
+  const handleAppStatus = (e) => {
     setAppStatus(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Hello');
+    console.log({
+      companyName,
+      dateApplied,
+      status,
+      role
+    });
   };
 
   return (
@@ -28,7 +32,6 @@ const dashboard = () => {
       <div className='dashboard-top-container'> 
         <div className='form_box'>
           <form className='inputs'>
-            {' '}
             Job Application Form:
             <input
               type='text'
@@ -44,8 +47,8 @@ const dashboard = () => {
               max='2028-12-31'
               onChange={handleOnChange}
             />
-            <form className='status'>
-              <select name='Status' id='status' onChange={handleAppStatus}>
+            <div className='status'>
+              <select name='Status' id='status' value={appStatus} onChange={handleAppStatus}>
                 <option value='' disabled selected hidden>
                   Select App Status...
                 </option>
@@ -56,7 +59,7 @@ const dashboard = () => {
                 <option value='Have not heard back'>Have not heard Back</option>
                 <option value='Other'>Other</option>
               </select>
-            </form>
+            </div>
             <input type='text' className='role' placeholder='Role: '></input>
             <button type='submit' className='btn' onSubmit={handleSubmit}>
               Submit
