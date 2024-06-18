@@ -1,4 +1,4 @@
-export const ADD_CARD = 'ADD_CARD';
-export const SET_STATUS = 'SET_NEW_LOCATION';
-export const SET_NOTES = 'ADD_MARKET';
-export const DELETE_CARD = 'DELETE_CARD';
+export const ADD_APP = 'ADD_APP';
+export const SET_STATUS = 'SET_STATUS';
+export const SET_NOTES = 'SET_NOTES';
+export const DELETE_APP = 'DELETE_APP';

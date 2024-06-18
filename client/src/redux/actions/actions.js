@@ -1,7 +1,7 @@
 import * as types from './actionTypes.js'
 
 export const addCard = (appObj) => ({
-    type: types.ADD_CARD,
+    type: types.ADD_APP,
     payload: appObj,
   });
   
@@ -16,6 +16,7 @@ export const setNotes = (notes) => ({
   });
 
 export const deleteCard = (applicationId) => ({
-  type: types.DELETE_CARD,
+  type: types.DELETE_APP,
   payload: applicationId,
 });
+
