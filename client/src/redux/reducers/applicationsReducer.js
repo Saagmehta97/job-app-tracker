@@ -31,8 +31,8 @@ const applicationsReducer = (state = initialState, action) => {
         role: action.payload.role,
         notes: action.payload.notes,
       });
-    case types.ADD_CARD:
-      break;
+    // case types.ADD_CARD:
+    //   break;
     case types.DELETE_CARD:
       break;
     default: {
