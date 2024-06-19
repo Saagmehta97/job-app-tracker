@@ -10,6 +10,19 @@ const pool = new Pool({
   },
 });
 
+// testing if we are connection to DB
+const testConnection = async () => {
+  try {
+    const client = await pool.connect();
+    console.log('Connected to database');
+    client.release();
+  } catch (err) {
+    console.error('Error connecting to database:', err);
+  }
+};
+
+testConnection();
+
 // export an object with query property that returns an invocation of pool.query
 // require it in controller to be the access point to our database
 module.exports = {
