@@ -36,10 +36,12 @@ const Login = () => {
       });
       console.log('response ', response);
       const data = await response.json();
-      if (data) {
+      if (response.ok) {
         navigate('/users/dashboard');
+      } else {
+        alert(data.error);
       }
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       alert('bad fetch response');
     }
