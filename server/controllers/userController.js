@@ -48,11 +48,13 @@ userController.createUser = (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
 
-  const passQuery = `SELECT password FROM users WHERE username = '${username}'`;
   //query for the stored password in the database using the username as the condition
   //use bcrypt compare to check entered password and stored password
   try {
-    const storedPass = await db.query(passQuery);
+    // $1 for parameterized queries, instead of string template literal
+    const passQuery = `SELECT password FROM users WHERE username = $1`;
+    // passing in array of usernames so it can replace the placeholders from the parameterized queries
+    const storedPass = await db.query(passQuery, [username]);
     //console.log(storedPass, ' this is storedPass');
     const dbPass = storedPass.rows[0].password;
     //console.log(dbPass, ' this is dbPass');
@@ -61,11 +63,13 @@ userController.verifyUser = async (req, res, next) => {
       password.toString(),
       dbPass.toString()
     );
-    //console.log(queryResult + ' this is queryResult');
+    // console.log(queryResult + ' this is queryResult');
     //console.log(storedPass + 'this is storedpass');
     if (queryResult) {
-      res.locals.loginPassword = dbPass;
       res.locals.userName = username;
+      res.locals.loginPassword = dbPass;
+    } else {
+      return res.status(401).json({ error: 'Invalid username or password' });
     }
     return next();
   } catch (err) {
