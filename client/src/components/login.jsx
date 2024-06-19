@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import './styles.css';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -8,13 +7,19 @@ const Login = () => {
     navigate('users/signup');
   };
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUser = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   async function loginAccount(event) {
     event.preventDefault();
-
-    const newUsername = document.getElementById('usernameInput');
-    const newPassword = document.getElementById('passwordInput');
-    // console.log(newUsername.value);
-    // console.log(newPassword.value);
 
     try {
       console.log('before fetch');
@@ -25,8 +30,8 @@ const Login = () => {
         },
         method: 'POST',
         body: JSON.stringify({
-          username: newUsername.value,
-          password: newPassword.value,
+          username,
+          password,
         }),
       });
       console.log('response ', response);
@@ -38,30 +43,21 @@ const Login = () => {
     } catch (err) {
       alert('bad fetch response');
     }
-    // .then((data) => data.json())
-    // .then((data) => {
-    //   console.log('this is fetch response', data);
-    // })
-    // .catch(function (res) {
-    //   alert('bad');
-    // });
   }
 
   return (
     <div className='login-container'>
       <div>
         Login
-        <form /*onSubmit={handleSubmit}*/ id='loginform'>
+        <form id='loginform'>
           username:{' '}
-          <input
-            type='text'
-            id='usernameInput' /*onChange={storeUsername}*/
-          ></input>
+          <input type='text' id='usernameInput' onChange={handleUser}></input>
           <br></br>
           password:{' '}
           <input
             type='text'
-            id='passwordInput' /*onChange={storePassword}*/
+            id='passwordInput'
+            onChange={handlePassword}
           ></input>
           <button type='submit' id='loginButton' onClick={loginAccount}>
             login!

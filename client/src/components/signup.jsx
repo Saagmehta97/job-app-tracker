@@ -1,54 +1,88 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const Signup = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
   let navigate = useNavigate();
 
-  function createAccount() {
-    const newUsername = document.getElementById('username');
-    const newPassword = document.getElementById('password');
-    const newFirstname = document.getElementById('firstname');
-    const newLastname = document.getElementById('lastname');
+  const handleUser = (e) => {
+    setUsername(e.target.value);
+  };
 
-    // console.log(newUsername.value);
-    // console.log(newPassword.value);
-    // console.log(newFirstname.value);
-    // console.log(newLastname.value);
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+  };
 
-    fetch('http://localhost:3000/users/signup', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        username: newUsername.value,
-        password: newPassword.value,
-        firstName: newFirstname.value,
-        lastName: newLastname.value,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('this is fetch response', data);
-        navigate('/');
-      })
-      .catch(function (res) {
-        alert('bad');
+  const handleFirstname = (e) => {
+    setFirstname(e.target.value);
+  };
+
+  const handleLastname = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const createAccount = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/users/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          password,
+          firstName: firstname,
+          lastName: lastname,
+        }),
       });
-  }
+
+      if (!response.ok) {
+        throw new Error('Failed to sign up');
+      }
+
+      const data = await response.json();
+      console.log('Signup successful:', data);
+      navigate('/');
+    } catch (error) {
+      console.error('Signup error:', error);
+      alert('Failed to sign up');
+    }
+  };
 
   return (
     <div className='signup-box'>
-      <input type='text' id='username' name='username' placeholder='Username' />
-      <input type='text' id='password' name='password' placeholder='Password' />
+      <input
+        type='text'
+        id='username'
+        name='username'
+        placeholder='Username'
+        onChange={handleUser}
+      />
+      <input
+        type='text'
+        id='password'
+        name='password'
+        placeholder='Password'
+        onChange={handlePassword}
+      />
       <input
         type='text'
         id='firstname'
         name='firstname'
         placeholder='Firstname'
+        onChange={handleFirstname}
       />
-      <input type='text' id='lastname' name='lastname' placeholder='Lastname' />
+      <input
+        type='text'
+        id='lastname'
+        name='lastname'
+        placeholder='Lastname'
+        onChange={handleLastname}
+      />
       <button type='button' onClick={createAccount}>
         Sign Up
       </button>
