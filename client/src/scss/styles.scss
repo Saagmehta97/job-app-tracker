@@ -1,7 +1,7 @@
 #signup {
   background-color: transparent;
   border: transparent;
-  color: rgb(244, 244, 244);
+  color: black;
 }
 
 #signup:hover {
@@ -22,6 +22,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .main {

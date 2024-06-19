@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 // import './styles.css';
 
 const Login = () => {
@@ -37,7 +36,7 @@ const Login = () => {
       }
       console.log(data);
     } catch (err) {
-      alert('bad');
+      alert('bad fetch response');
     }
     // .then((data) => data.json())
     // .then((data) => {

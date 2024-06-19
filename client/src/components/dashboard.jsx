@@ -39,32 +39,30 @@ const dashboard = () => {
   const handleSubmit = (e) => {
     console.log('aefawevwe');
   }
-  
 
-  useEffect(() => {
-    fetch('http://localhost:3000/applications/submitApp', {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-      body: JSON.stringify({
-        companyName: companyName,
-        dateApplied: dateApplied,
-        appStatus: appStatus,
-        notes: notes,
-        role: role,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log('this is fetch response', data);
-        navigate('/');
-      })
-      .catch(function (res) {
-        alert('bad');
-      });
-    });
+  // fetch('http://localhost:3000/applications/submitApp', {
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //       companyName: companyName,
+  //       dateApplied: dateApplied,
+  //       appStatus: appStatus,
+  //       notes: notes,
+  //       role: role,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log('this is fetch response', data);
+  //       navigate('/');
+  //     })
+  //     .catch(function (res) {
+  //       alert('bad');
+  //     });
+  // };
 
   return (
     <div className='main'>
