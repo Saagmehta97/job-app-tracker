@@ -43,7 +43,7 @@ describe('Application reducer', () => {
         status: 'Applied',
         role: 'Coder',
         notes: 'asdasd',
-        appId: '00001',
+        appId: 1,
       },
     };
 
@@ -81,7 +81,7 @@ describe('Application reducer', () => {
           status: 'Rejected',
           role: 'SWE',
           notes: 'Hello',
-          appId: '00001',
+          appId: 1,
         },
       ],
       totalApps: 1,
@@ -92,7 +92,7 @@ describe('Application reducer', () => {
       payload: {
         companyName: 'Mcdonalds',
         status: 'Initial Interview',
-        appId: '00001',
+        appId: 1,
       },
     };
 
@@ -119,7 +119,7 @@ describe('Application reducer', () => {
     let state = {
       appList: [
         {
-          appId: '00002',
+          appId: 2,
           companyName: 'Mcdonalds',
           dateApplied: '06/18/2024',
           status: 'Rejected',
@@ -133,7 +133,7 @@ describe('Application reducer', () => {
     const action = {
       type: 'SET_NOTES',
       payload: {
-        appId: '00002',
+        appId: 2,
         companyName: 'Mcdonalds',
         notes: 'Goodbye World',
       },
@@ -155,7 +155,7 @@ describe('Application reducer', () => {
     let state = {
       appList: [
         {
-          appId: '00003',
+          appId: 3,
           companyName: 'Google',
           dateApplied: 'June 18th, 2024',
           status: 'Applied',
@@ -163,7 +163,7 @@ describe('Application reducer', () => {
           notes: 'asdasd',
         },
         {
-          appId: '00004',
+          appId: 4,
           companyName: 'Amazon',
           dateApplied: 'June 17th, 2024',
           status: 'Applied',
@@ -177,7 +177,7 @@ describe('Application reducer', () => {
     const action = {
       type: 'DELETE_APP',
       payload: {
-        appId: '00003',
+        appId: 3,
       },
     };
 
