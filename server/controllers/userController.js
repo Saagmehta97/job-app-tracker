@@ -26,7 +26,6 @@ userController.createUser = (req, res, next) => {
   const params = [firstName, lastName, username, hashWord];
   console.log('inside createUser');
   const query = `INSERT INTO users(firstname, lastname, username, password) VALUES ($1, $2, $3, $4) RETURNING *`;
-  // const passQuery = `SELECT password FROM users WHERE username = '${username}'`;
 
   db.query(query, params)
     .then((createdUser) => {
@@ -66,10 +65,14 @@ userController.verifyUser = async (req, res, next) => {
     // console.log(queryResult + ' this is queryResult');
     //console.log(storedPass + 'this is storedpass');
     if (queryResult) {
-      res.locals.userName = username;
-      res.locals.loginPassword = dbPass;
-    } else {
-      return res.status(401).json({ error: 'Invalid username or password' });
+      res.locals.user = {
+        success: true,
+        message: 'login successfully',
+        data: {
+          userId: queryResult.rows[0].id,
+          username: queryResult.rows[0].username,
+        },
+      };
     }
     return next();
   } catch (err) {
