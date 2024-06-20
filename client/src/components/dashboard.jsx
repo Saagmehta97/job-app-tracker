@@ -3,71 +3,92 @@ import { useState, useEffect } from 'react';
 import ApplicationList from './application-list-component/application-list.jsx';
 import Sidebar from './sidebar';
 
-
 const dashboard = () => {
+  const [application, setApplication] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [dateApplied, setDateApplied] = useState('');
-  const [appStatus, setAppStatus] = useState(''); 
+  const [appStatus, setAppStatus] = useState('');
   const [notes, setNotes] = useState('');
-  const [role, setRole] = useState(''); 
-  
-  
+  const [role, setRole] = useState('');
+  // const [entries, setEntries] = useState([]);
+
   // const handleSubmit = async(e) => {
   //   e.preventDefault()
   // }
-  
-  const handleCompanyChange = async(e) => {
-    setCompanyName(e.target.value)
-  }
-  
+
+  const handleCompanyChange = async (e) => {
+    setCompanyName(e.target.value);
+  };
+
   const handleDateChange = async (e) => {
     setDateApplied(e.target.value);
   };
-  
+
   const handleAppStatusChange = async (e) => {
     setAppStatus(e.target.value);
   };
-  
-  const handleNotesChange = async(e) => {
-    setNotes(e.target.value)
-  }
-  
-  const handleRoleChange = async(e) => {
-    setRole(e.target.value)
+
+  const handleNotesChange = async (e) => {
+    setNotes(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    console.log('aefawevwe');
-  }
+  const handleRoleChange = async (e) => {
+    setRole(e.target.value);
+  };
 
-  // fetch('http://localhost:3000/applications/submitApp', {
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //       companyName: companyName,
-  //       dateApplied: dateApplied,
-  //       appStatus: appStatus,
-  //       notes: notes,
-  //       role: role,
-  //     }),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log('this is fetch response', data);
-  //       navigate('/');
-  //     })
-  //     .catch(function (res) {
-  //       alert('bad');
-  //     });
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch(
+        'http://localhost:3000/applications/submitApp',
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          method: 'POST',
+          body: JSON.stringify({
+            companyName: companyName,
+            dateApplied: dateApplied,
+            role: role,
+            notes: notes,
+            appStatus: appStatus,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log('this is fetch response', data);
+
+      if (response.ok) {
+        const newApp = {
+          companyName,
+          dateApplied,
+          appStatus,
+          notes,
+          role,
+        };
+        setApplication(...application, newApp);
+        setCompanyName('');
+        setDateApplied('');
+        setAppStatus('');
+        setNotes('');
+        setRole('');
+        alert('Success submitted');
+      } else {
+        alert('Error: ' + data.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('bad');
+    }
+  };
 
   return (
     <div className='main'>
-      {/* <h1 className='header'>JobHub</h1> */}
-      <div className='dashboard-top-container'> 
+      <h1 className='header'>JobHub</h1>
+      <div className='dashboard-top-container'>
         <div className='form_box'>
           <form className='inputs'>
             Job Application Form:
@@ -75,7 +96,8 @@ const dashboard = () => {
               type='text'
               className='company_name'
               placeholder='Company Name: '
-              onChange = {handleCompanyChange} 
+              onChange={handleCompanyChange}
+              required
             ></input>
             <input
               type='date'
@@ -87,7 +109,13 @@ const dashboard = () => {
               onChange={handleDateChange}
             />
             <div className='status'>
-              <select name='status' id='status' value={appStatus} onChange={handleAppStatusChange}>
+              <select
+                name='status'
+                id='status'
+                value={appStatus}
+                onChange={handleAppStatusChange}
+                required
+              >
                 <option value='' disabled selected hidden>
                   Select App Status...
                 </option>
@@ -107,9 +135,7 @@ const dashboard = () => {
           <ApplicationList />
         </div>
         <Sidebar />
-        
       </div>
-      
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   let navigate = useNavigate();
@@ -36,11 +36,10 @@ const Login = () => {
       });
       console.log('response ', response);
       const data = await response.json();
-      console.log(data);
       if (response.ok) {
         navigate('/users/dashboard');
       } else {
-        alert(data.error);
+        alert('Wrong password, try again!');
       }
     } catch (err) {
       alert('bad fetch response');
@@ -74,13 +73,14 @@ const Login = () => {
           id='loginButton'
           onClick={loginAccount}
         >
-          login
+          Login
+          {/* <Link to='/dashboard'> login</Link> */}
         </button>
       </div>
       <div className='signupdiv'>
         <p>Not a member?</p>
         <button onClick={handleClick} id='signup'>
-          sign up
+          Sign Up
         </button>
       </div>
     </div>
