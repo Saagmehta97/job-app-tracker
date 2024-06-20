@@ -52,7 +52,7 @@ const Login = () => {
       <div className='login-div'>
         <h1 className='header'>JobHub</h1>
         <form id='loginform'>
-          username:{' '}
+          <p className='signs'>username: </p>
           <input
             className='text-box'
             type='text'
@@ -60,7 +60,7 @@ const Login = () => {
             onChange={handleUser}
           ></input>
           <br></br>
-          password:{' '}
+          <p className='signs'>password: </p>
           <input
             className='text-box'
             type='text'

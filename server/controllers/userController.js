@@ -57,7 +57,6 @@ userController.verifyUser = async (req, res, next) => {
     //console.log(storedPass, ' this is storedPass');
     const dbPass = storedPass.rows[0].password;
     //console.log(dbPass, ' this is dbPass');
-
     const queryResult = await bcrypt.compare(
       password.toString(),
       dbPass.toString()
