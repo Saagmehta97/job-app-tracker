@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.use('/users', routerSignup);
-app.use('/applications', applicationsRouter);
+app.use('/dashboard', applicationsRouter);
 
 // statically serve everything in the build folder on the route '/build'
 // app.use('/build', express.static(path.join(__dirname, '../build')));
@@ -38,7 +38,10 @@ app.use((err, req, res, next) => {
     message: { err: 'An error occurred' },
   };
   const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
+  console.error('Error log:', errorObj.log);
+  console.error('Error status:', errorObj.status);
+  console.error('Error message:', errorObj.message);
+  console.error('Stack trace:', err.stack);
   return res.status(errorObj.status).json(errorObj.message);
 });
 

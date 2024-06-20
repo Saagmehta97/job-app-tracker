@@ -47,32 +47,33 @@ userController.createUser = (req, res, next) => {
 userController.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
 
+  //const passQuery = `SELECT password FROM users WHERE username = $1`;
   //query for the stored password in the database using the username as the condition
   //use bcrypt compare to check entered password and stored password
   try {
-    // $1 for parameterized queries, instead of string template literal
     const passQuery = `SELECT password FROM users WHERE username = $1`;
-    // passing in array of usernames so it can replace the placeholders from the parameterized queries
     const storedPass = await db.query(passQuery, [username]);
-    //console.log(storedPass, ' this is storedPass');
+    // console.log('stored pass', storedPass);
+    // console.log(storedPass, ' this is storedPass');
     const dbPass = storedPass.rows[0].password;
+
+    // console.log('dbPass', dbPass);
     //console.log(dbPass, ' this is dbPass');
+
     const queryResult = await bcrypt.compare(
       password.toString(),
       dbPass.toString()
     );
-    // console.log(queryResult + ' this is queryResult');
+    //console.log(queryResult + ' this is queryResult');
     //console.log(storedPass + 'this is storedpass');
+    // if (!queryResult) {
+    //   res.redirect('/signup');
+    // }
     if (queryResult) {
-      res.locals.user = {
-        success: true,
-        message: 'login successfully',
-        data: {
-          userId: queryResult.rows[0].id,
-          username: queryResult.rows[0].username,
-        },
-      };
+      res.locals.loginPassword = dbPass;
+      res.locals.userName = username;
     }
+    console.log('query result', queryResult);
     return next();
   } catch (err) {
     return next({
