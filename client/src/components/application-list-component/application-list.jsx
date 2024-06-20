@@ -1,36 +1,20 @@
 import React from 'react';
 import ApplicationCard from '../application-card-component/application-card';
 
-const ApplicationList = (application) => {
+const ApplicationList = ({ applications }) => {
   return (
     <div className='application-list' id='application_list'>
-      {application.map((application) => {
-        <ApplicationCard />;
-      })}
+      {applications.map((application, index) => (
+        <ApplicationCard
+          key={index}
+          companyName={application.companyName}
+          dateApplied={application.dateApplied}
+          appStatus={application.appStatus}
+          role={application.role}
+          // notes={application.notes}
+        />
+      ))}
     </div>
-    //   <ApplicationCard
-    //     companyName={'McDonalds'}
-    //     dateApplied={'10 / 25 / 2023'}
-    //     status={'Applied'}
-    //     role={'Branch Manager'}
-    //     notes={'Am I aiming too high???'}
-    //   />
-    //   <ApplicationCard
-    //     companyName={'Wendys'}
-    //     dateApplied={' 02 / 22 / 2024'}
-    //     status={'Rejected'}
-    //     role={'Cashier'}
-    //     notes={'Manager said I have to be better at math'}
-    //   />
-    //   <ApplicationCard
-    //     companyName={'Burger King'}
-    //     dateApplied={'04 / 15 / 2024'}
-    //     status={'Have not heard back'}
-    //     role={'Custodian'}
-    //     notes={'Please hire me!!!'}
-    //   />
-    // </div>
-    // <></>
   );
 };
 

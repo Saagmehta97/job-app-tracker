@@ -37,7 +37,7 @@ const Login = () => {
       console.log('response ', response);
       const data = await response.json();
       if (response.ok) {
-        navigate('/users/dashboard');
+        navigate('/dashboard');
       } else {
         alert('Wrong password, try again!');
       }
