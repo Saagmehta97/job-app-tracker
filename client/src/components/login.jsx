@@ -51,7 +51,7 @@ const Login = () => {
       <div className='login-div'>
         <h1 className='header'>JobHub</h1>
         <form id='loginform'>
-          <p className='signs'>username: </p>
+          <p className='signs'>Username: </p>
           <input
             className='text-box'
             type='text'
@@ -59,10 +59,10 @@ const Login = () => {
             onChange={handleUser}
           ></input>
           <br></br>
-          <p className='signs'>password: </p>
+          <p className='signs'>Password: </p>
           <input
             className='text-box'
-            type='text'
+            type='password'
             id='passwordInput'
             onChange={handlePassword}
           ></input>
@@ -78,7 +78,7 @@ const Login = () => {
         </button>
       </div>
       <div className='signupdiv'>
-        <p>Not a member?</p>
+        <p>Not already a member?</p>
         <button onClick={handleClick} id='signup'>
           Sign Up
         </button>

@@ -9,7 +9,7 @@ const dashboard = () => {
       companyName: 'Google',
       dateApplied: '2024-06-25',
       appStatus: 'Applied',
-      role: 'Intern',
+      role: 'CEO',
     },
     {
       companyName: 'Microsoft',
