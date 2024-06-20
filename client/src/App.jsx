@@ -6,8 +6,7 @@ import Dashboard from './components/dashboard.jsx';
 
 export default function App() {
   return (
-    <div>
-      <h1 className='header'>JobHub</h1>
+    <div className='app'>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/users/signup' element={<Signup />} />

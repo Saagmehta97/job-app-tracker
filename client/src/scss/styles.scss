@@ -1,7 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #signup {
   background-color: transparent;
   border: transparent;
-  color: black;
+  color: rgb(20, 94, 184);
 }
 
 #signup:hover {
@@ -16,13 +22,56 @@ body {
   background-color: rgb(247, 246, 249);
 }
 
+.login-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .login-container,
-.signup-box {
+.signup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  border: 2px solid rgb(123, 123, 123);
+  background-image: linear-gradient(rgb(111, 128, 206), rgb(53, 249, 232));
+  padding: 0px 100px 100px 100px;
+  box-shadow: 10px 5px 5px rgb(211, 199, 199);
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signupdiv {
+  display: flex;
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.text-box {
+  margin-bottom: 15px;
+}
+
+.btn {
+  width: 75px;
+  padding: 3px;
+  background-color: rgb(135, 220, 223);
+  border: transparent;
+  border-radius: 15px;
+  box-shadow: 3px 3px #bebcbc;
+}
+
+.btn:hover {
+  background-color: rgb(247, 246, 249);
 }
 
 .main {
@@ -41,9 +90,6 @@ body {
   text-shadow: 1px 1px 0 grey, 1px 2px 0 grey, 1px 3px 0 grey, 1px 4px 0 grey,
     1px 5px 0 grey, 1px 6px 0 grey, 1px 7px 0 grey, 1px 8px 0 grey,
     5px 13px 15px black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .form_box {
@@ -118,15 +164,15 @@ body {
   width: 100%;
 }
 
-.lower-box{
+.lower-box {
   display: flex;
   align-items: center;
   justify-content: center;
-  color:green;
+  color: green;
 }
 
-.box-header{
-  display:flex;
+.box-header {
+  display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;

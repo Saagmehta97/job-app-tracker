@@ -49,26 +49,40 @@ const Login = () => {
 
   return (
     <div className='login-container'>
-      <div>
-        Login
+      <div className='login-div'>
+        <h1 className='header'>JobHub</h1>
         <form id='loginform'>
           username:{' '}
-          <input type='text' id='usernameInput' onChange={handleUser}></input>
+          <input
+            className='text-box'
+            type='text'
+            id='usernameInput'
+            onChange={handleUser}
+          ></input>
           <br></br>
           password:{' '}
           <input
+            className='text-box'
             type='text'
             id='passwordInput'
             onChange={handlePassword}
           ></input>
-          <button type='submit' id='loginButton' onClick={loginAccount}>
-            login!
-          </button>
         </form>
+        <button
+          className='btn'
+          type='submit'
+          id='loginButton'
+          onClick={loginAccount}
+        >
+          login
+        </button>
       </div>
-      <button onClick={handleClick} id='signup'>
-        sign up
-      </button>
+      <div className='signupdiv'>
+        <p>Not a member?</p>
+        <button onClick={handleClick} id='signup'>
+          sign up
+        </button>
+      </div>
     </div>
   );
 };

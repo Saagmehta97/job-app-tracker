@@ -54,38 +54,45 @@ const Signup = () => {
   };
 
   return (
-    <div className='signup-box'>
-      <input
-        type='text'
-        id='username'
-        name='username'
-        placeholder='Username'
-        onChange={handleUser}
-      />
-      <input
-        type='text'
-        id='password'
-        name='password'
-        placeholder='Password'
-        onChange={handlePassword}
-      />
-      <input
-        type='text'
-        id='firstname'
-        name='firstname'
-        placeholder='Firstname'
-        onChange={handleFirstname}
-      />
-      <input
-        type='text'
-        id='lastname'
-        name='lastname'
-        placeholder='Lastname'
-        onChange={handleLastname}
-      />
-      <button type='button' onClick={createAccount}>
-        Sign Up
-      </button>
+    <div className='signup-container'>
+      <h1 className='header'>JobHub</h1>
+      <div className='signup-box'>
+        <input
+          className='text-box'
+          type='text'
+          id='username'
+          name='username'
+          placeholder='Username'
+          onChange={handleUser}
+        />
+        <input
+          className='text-box'
+          type='text'
+          id='password'
+          name='password'
+          placeholder='Password'
+          onChange={handlePassword}
+        />
+        <input
+          className='text-box'
+          type='text'
+          id='firstname'
+          name='firstname'
+          placeholder='Firstname'
+          onChange={handleFirstname}
+        />
+        <input
+          className='text-box'
+          type='text'
+          id='lastname'
+          name='lastname'
+          placeholder='Lastname'
+          onChange={handleLastname}
+        />
+        <button type='button' onClick={createAccount} className='btn'>
+          Sign Up
+        </button>
+      </div>
     </div>
   );
 };
